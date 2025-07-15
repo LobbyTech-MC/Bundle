@@ -20,6 +20,9 @@ public class InventoryHandler {
     private FileConfiguration getConfig() {
         return getInstance().getConfig();
     }
+    private MaterialHandler getMaterials() {
+        return getInstance().getMaterialHandler();
+    }
     private Message getMessage() {
         return getInstance().getMessage();
     }
@@ -29,7 +32,7 @@ public class InventoryHandler {
     public Inventory open(Player player, ItemStack itemStack) {
         if (itemStack.getItemMeta() instanceof BundleMeta bundleMeta) {
             getBundles().remove(player);
-            var result = getInstance().getMaterialHandler().getEnchantment(bundleMeta, "storage") + 1;
+            var result = getMaterials().getEnchantment(bundleMeta, "storage") + 1;
             var inventory = create(player, 9 * result, getMessage().addColor(getConfig().getString("bundle.title")));
             var items = bundleMeta.getItems();
             if (bundleMeta.hasItems()) {

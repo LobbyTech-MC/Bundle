@@ -56,27 +56,25 @@ public class InventoryClick implements Listener {
                 event.setCancelled(true);
                 event.setResult(Event.Result.DENY);
             }
-        } else {
-            if (event.getClick().equals(ClickType.SWAP_OFFHAND)) {
-                var offHand = player.getInventory().getItemInOffHand();
-                var clicked = event.getCurrentItem();
-                if (getMaterials().isStorages(offHand)) {
-                    event.setCancelled(true);
-                    event.setResult(Event.Result.DENY);
-                } else if (getMaterials().isStorages(clicked)) {
-                    event.setCancelled(true);
-                    event.setResult(Event.Result.DENY);
-                }
-            } else {
-                var cursorItem = event.getCursor();
-                if (cursorItem == null)return;
-                if (!getMaterials().isBundle(cursorItem))return;
-                var clicked = event.getCurrentItem();
-                if (clicked == null)return;
-                if (!getMaterials().isStorages(clicked))return;
+        } else if (event.getClick().equals(ClickType.SWAP_OFFHAND)) {
+            var offHand = player.getInventory().getItemInOffHand();
+            var clicked = event.getCurrentItem();
+            if (getMaterials().isStorages(offHand)) {
+                event.setCancelled(true);
+                event.setResult(Event.Result.DENY);
+            } else if (getMaterials().isStorages(clicked)) {
                 event.setCancelled(true);
                 event.setResult(Event.Result.DENY);
             }
+        } else {
+            var cursorItem = event.getCursor();
+            if (cursorItem == null)return;
+            if (!getMaterials().isBundle(cursorItem))return;
+            var clicked = event.getCurrentItem();
+            if (clicked == null)return;
+            if (!getMaterials().isStorages(clicked))return;
+            event.setCancelled(true);
+            event.setResult(Event.Result.DENY);
         }
     }
 }

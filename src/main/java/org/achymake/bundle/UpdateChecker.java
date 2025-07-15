@@ -2,7 +2,6 @@ package org.achymake.bundle;
 
 import org.achymake.bundle.data.Message;
 import org.achymake.bundle.handlers.ScheduleHandler;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 import java.io.IOException;
@@ -13,9 +12,6 @@ import java.util.function.Consumer;
 public class UpdateChecker {
     private Bundle getInstance() {
         return Bundle.getInstance();
-    }
-    private FileConfiguration getConfig() {
-        return getInstance().getConfig();
     }
     private Message getMessage() {
         return getInstance().getMessage();
@@ -28,7 +24,7 @@ public class UpdateChecker {
     }
     public void getUpdate(Player player) {
         if (!player.hasPermission("bundle.event.join.update"))return;
-        if (!getConfig().getBoolean("notify-update"))return;
+        if (!getInstance().getConfig().getBoolean("notify-update"))return;
         getScheduler().runLater(new Runnable() {
             @Override
             public void run() {
@@ -41,7 +37,7 @@ public class UpdateChecker {
         }, 3);
     }
     public void getUpdate() {
-        if (!getConfig().getBoolean("notify-update"))return;
+        if (!getInstance().getConfig().getBoolean("notify-update"))return;
         getScheduler().runAsynchronously(new Runnable() {
             @Override
             public void run() {
