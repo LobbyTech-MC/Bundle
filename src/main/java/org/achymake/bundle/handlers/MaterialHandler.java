@@ -1,5 +1,6 @@
 package org.achymake.bundle.handlers;
 
+import org.bukkit.Material;
 import org.bukkit.Tag;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
@@ -7,7 +8,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class MaterialHandler {
     public boolean isBundle(ItemStack itemStack) {
-        return Tag.ITEMS_BUNDLES.isTagged(itemStack.getType());
+        return Material.BUNDLE == itemStack.getType();
     }
     public boolean isShulkerBox(ItemStack itemStack) {
         return Tag.SHULKER_BOXES.isTagged(itemStack.getType());
