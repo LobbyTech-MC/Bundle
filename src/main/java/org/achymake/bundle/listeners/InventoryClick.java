@@ -45,10 +45,25 @@ public class InventoryClick implements Listener {
                 }
             } else if (event.getClick().equals(ClickType.NUMBER_KEY)) {
                 var switched = player.getInventory().getItem(event.getHotbarButton());
-                if (switched == null)return;
-                if (!getMaterials().isStorages(switched))return;
-                event.setCancelled(true);
-                event.setResult(Event.Result.DENY);
+                var switched2 = event.getCurrentItem();
+                if (switched != null) {
+                    if (getMaterials().isStorages(switched)) {
+                        event.setCancelled(true);
+                        event.setResult(Event.Result.DENY);
+                    } else if (getMaterials().isStorages(switched2)) {
+                        event.setCancelled(true);
+                        event.setResult(Event.Result.DENY);
+                    }
+                }
+                if (switched2 != null) {
+                    if (getMaterials().isStorages(switched)) {
+                        event.setCancelled(true);
+                        event.setResult(Event.Result.DENY);
+                    } else if (getMaterials().isStorages(switched2)) {
+                        event.setCancelled(true);
+                        event.setResult(Event.Result.DENY);
+                    }
+                }
             } else {
                 var clicked = event.getCurrentItem();
                 if (clicked == null)return;
