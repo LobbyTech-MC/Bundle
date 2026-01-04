@@ -36,7 +36,7 @@ public class MaterialHandler {
     }
     public boolean hasInventory(Block block) {
         var material = block.getType();
-        if (block.getState() instanceof BlockInventoryHolder) {
+        if (block.getState(false) instanceof BlockInventoryHolder) {
             return true;
         } else if (material.equals(get("trapped_chest"))) {
             return true;
